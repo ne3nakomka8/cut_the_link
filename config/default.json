@@ -1,0 +1,6 @@
+{
+    "port": 5000,
+    "jwtSecret": "Caesar is super fat cat ",
+    "mongoUri": "mongodb+srv://Yulia:12345@cluster0.wk7to.mongodb.net/app?retryWrites=true&w=majority",
+    "baseUrl": "http://localhost:5000"
+}
