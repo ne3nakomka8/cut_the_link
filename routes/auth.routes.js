@@ -22,7 +22,7 @@ router.post(
     if (!errors.isEmpty()) {
       return res.status(400).json({
         errors: errors.array(),
-        message: 'Uncorrect data in registation form'
+        message: 'Minimum 6 symbols for password'
       })
     }
 
@@ -51,7 +51,7 @@ router.post(
   '/login',
   [
     check('email', 'Enter correct email').normalizeEmail().isEmail(),
-    check('password', 'Entter password').exists()
+    check('password', 'Enter password').exists()
   ],
   async (req, res) => {
   try {
