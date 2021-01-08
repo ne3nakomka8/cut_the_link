@@ -16,6 +16,7 @@
     "mern",
     "react"
   ],
+  "proxy": "https://cut-your-link.herokuapp.com",
   "author": "Yulia Kuprashevich <ne3nakomka8@gmail.com>",
   "license": "ISC",
   "dependencies": {
