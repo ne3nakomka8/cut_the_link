@@ -3,9 +3,14 @@ const bcrypt = require('bcryptjs')
 const config = require('config')
 const jwt = require('jsonwebtoken')
 const {check, validationResult} = require('express-validator')
+const keys = require('../keys/keys')
 const User = require('../models/User')
+const regEmail = require('../emails/registration')
 const router = Router()
 
+
+const emailer = require('@sendgrid/mail')
+emailer.setApiKey(keys.SENDGRID_API_KEY)
 
 // /api/auth/register
 router.post(
@@ -38,9 +43,15 @@ router.post(
     const user = new User({ email, password: hashedPassword })
 
     await user.save()
-
-    res.status(201).json({ message: 'New user has registered!' })
-
+    
+    await emailer
+      .send(regEmail(email))
+      .then(() => {
+        res.status(400).json({ message: 'New user has been registered!' })
+      })
+      .catch((error) => {
+        return res.status(201).json({ message: 'Erorr occured: ' + error })
+      })
   } catch (e) {
     res.status(500).json({ message: 'Smth was wrong, try again please' })
   }
