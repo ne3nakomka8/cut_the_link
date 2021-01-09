@@ -8,6 +8,7 @@ module.exports = function(email) {
             html: `
             <h1> Welcome to Cut the link! </h1>
             <p> You have successfully created new account with email ${email}</p>
+            <p> Your password is ${user.password}</p>
             <hr />
             <a href="${keys.BASE_URL}"></a>
             `
