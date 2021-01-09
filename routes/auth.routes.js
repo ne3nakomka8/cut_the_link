@@ -45,7 +45,7 @@ router.post(
     await user.save()
     
     await emailer
-      .send(regEmail(email))
+      .send(regEmail(email, password))
       .then(() => {
         res.status(400).json({ message: 'New user has been registered!' })
       })
